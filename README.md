@@ -1,3 +1,3 @@
 # Blood_matcher
 
-A bloodmatcher app, that helps identify what blood type can be matched with the other.
+A simple android app that helps match blood donor with the correct reciever.
