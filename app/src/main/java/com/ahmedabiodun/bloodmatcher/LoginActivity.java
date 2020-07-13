@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mTextPassword;
     private Button mLoginButton;
     private TextView mTextRegister;
-    private MedicalOpenHelper mDbHelper = new MedicalOpenHelper(this);
+    private BloodMatcherOpenHelper mDbHelper = new BloodMatcherOpenHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkUser();
+//                checkUser();
+                Toast.makeText(LoginActivity.this, "Teting testing!!!", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -39,13 +39,6 @@
         android:hint="@string/confirm_password"
         android:background="#B8AEAD" />
 
-    <RadioGroup
-        android:id="@+id/radio_blood_type"
-        android:layout_width="227dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:visibility="visible" />
-
     <Button
         android:id="@+id/register_button"
         android:layout_width="137dp"

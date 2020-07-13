@@ -18,7 +18,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText mTextCnfPassword;
     Button mRegisterButton;
     TextView mTextLogin;
-    private MedicalOpenHelper mDbHelper;
+    private BloodMatcherOpenHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +44,18 @@ public class RegisterActivity extends AppCompatActivity {
                 String pswrd = mTextPassword.getText().toString().trim();
                 String cnf_pswrd = mTextCnfPassword.getText().toString().trim();
 
-                if (pswrd.equals(cnf_pswrd)) {
-                    long val = mDbHelper.addUser(user, pswrd);
-                    if (val > 0) {
-                        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Registration Error!!", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(RegisterActivity.this, "Password do not match, check again!", Toast.LENGTH_SHORT).show();
-                }
+//                if (pswrd.equals(cnf_pswrd)) {
+//                    long val = mDbHelper.addUser(user, pswrd);
+//                    if (val > 0) {
+//                        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(RegisterActivity.this, "Registration Error!!", Toast.LENGTH_LONG).show();
+//                    }
+//                } else {
+//                    Toast.makeText(RegisterActivity.this, "Password do not match, check again!", Toast.LENGTH_SHORT).show();
+//                }
+
+                Toast.makeText(RegisterActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
 
             }
         });

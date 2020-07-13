@@ -9,14 +9,14 @@ import android.provider.BaseColumns;
 
 import androidx.annotation.Nullable;
 
-import com.ahmedabiodun.bloodmatcher.MedicalDatabaseContract.AuthDataEntry;
+import com.ahmedabiodun.bloodmatcher.BloodMatcherDatabaseContract.AuthDataEntry;
 
-public class MedicalOpenHelper extends SQLiteOpenHelper {
+public class BloodMatcherOpenHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Medical.db";
     public static final int DATABASE_VERSION = 1;
 
-    public MedicalOpenHelper(@Nullable Context context) {
+    public BloodMatcherOpenHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -24,7 +24,7 @@ public class MedicalOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AuthDataEntry.SQL_CREATE_TABLE);
-        db.execSQL(MedicalDatabaseContract.BloodTypeDonorsEntry.SQL_CREATE_TABLE);
+        db.execSQL(BloodMatcherDatabaseContract.BloodTypeDonorsEntry.SQL_CREATE_TABLE);
 
         DatabaseDataWorker worker = new DatabaseDataWorker(db);
         worker.insertSampleUsers();
@@ -47,7 +47,7 @@ public class MedicalOpenHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUser(String username, String password) {
-//        MedicalOpenHelper helper = new MedicalOpenHelper(MedicalOpenHelper.this);
+//        BloodMatcherOpenHelper helper = new BloodMatcherOpenHelper(BloodMatcherOpenHelper.this);
         SQLiteDatabase db = this.getReadableDatabase();
 
         String[] columns = {

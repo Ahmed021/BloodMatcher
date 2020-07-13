@@ -3,7 +3,7 @@ package com.ahmedabiodun.bloodmatcher;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ahmedabiodun.bloodmatcher.MedicalDatabaseContract.AuthDataEntry;
+import com.ahmedabiodun.bloodmatcher.BloodMatcherDatabaseContract.AuthDataEntry;
 
 public class DatabaseDataWorker {
     private SQLiteDatabase mDb;

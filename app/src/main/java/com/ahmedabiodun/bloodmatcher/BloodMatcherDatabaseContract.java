@@ -2,8 +2,8 @@ package com.ahmedabiodun.bloodmatcher;
 
 import android.provider.BaseColumns;
 
-public final class MedicalDatabaseContract {
-    private MedicalDatabaseContract() {}
+public final class BloodMatcherDatabaseContract {
+    private BloodMatcherDatabaseContract() {}
 
     public static final class AuthDataEntry implements BaseColumns {
         public static final String TABLE_NAME = "auth";
