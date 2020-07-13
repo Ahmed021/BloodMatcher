@@ -1,4 +1,4 @@
-package com.ahmedabiodun.medical;
+package com.ahmedabiodun.bloodmatcher;
 
 import android.provider.BaseColumns;
 

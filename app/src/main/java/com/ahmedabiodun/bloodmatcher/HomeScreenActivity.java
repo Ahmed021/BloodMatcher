@@ -1,8 +1,10 @@
-package com.ahmedabiodun.medical;
+package com.ahmedabiodun.bloodmatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.ahmedabiodun.bloodmatcher.R;
 
 public class HomeScreenActivity extends AppCompatActivity {
 

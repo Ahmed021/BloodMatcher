@@ -1,9 +1,9 @@
-package com.ahmedabiodun.medical;
+package com.ahmedabiodun.bloodmatcher;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.ahmedabiodun.medical.MedicalDatabaseContract.AuthDataEntry;
+import com.ahmedabiodun.bloodmatcher.MedicalDatabaseContract.AuthDataEntry;
 
 public class DatabaseDataWorker {
     private SQLiteDatabase mDb;

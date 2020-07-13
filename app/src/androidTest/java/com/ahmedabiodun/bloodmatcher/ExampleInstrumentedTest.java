@@ -1,4 +1,4 @@
-package com.ahmedabiodun.medical;
+package com.ahmedabiodun.bloodmatcher;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.ahmedabiodun.medical", appContext.getPackageName());
+        assertEquals("com.ahmedabiodun.bloodmatcher", appContext.getPackageName());
     }
 }

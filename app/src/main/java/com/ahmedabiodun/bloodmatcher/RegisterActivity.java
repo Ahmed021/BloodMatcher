@@ -1,4 +1,4 @@
-package com.ahmedabiodun.medical;
+package com.ahmedabiodun.bloodmatcher;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.ahmedabiodun.bloodmatcher.R;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText mTextUsername;
@@ -43,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String cnf_pswrd = mTextCnfPassword.getText().toString().trim();
 
                 if (pswrd.equals(cnf_pswrd)) {
-                    int val = mDbHelper.addUser(user, pswrd);
+                    long val = mDbHelper.addUser(user, pswrd);
                     if (val > 0) {
                         Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                     } else {
