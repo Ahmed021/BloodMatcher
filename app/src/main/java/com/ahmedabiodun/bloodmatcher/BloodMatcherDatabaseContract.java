@@ -13,11 +13,11 @@ public final class BloodMatcherDatabaseContract {
 
         // CREATE TABLE auth (username, password, blood_type)
         public static final String SQL_CREATE_TABLE =
-                "CREATE TABLE " + TABLE_NAME + "(" +
-                        _ID + " INTEGER PRIMARY KEY" +
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        _ID + " INTEGER PRIMARY KEY, " +
                         COLUMN_USERNAME + " TEXT UNIQUE NOT NULL, " +
                         COLUMN_PASSWORD + " TEXT NOT NULL, " +
-                        COLUMN_BLOOD_TYPE + " TEXT NOT NULL)";
+                        COLUMN_BLOOD_TYPE + " TEXT)";
 
     }
 

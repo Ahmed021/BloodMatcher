@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ahmedabiodun.bloodmatcher.R;
+import com.google.android.material.snackbar.Snackbar;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText mTextUsername;
@@ -25,10 +26,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
 
+        mDbHelper = new BloodMatcherOpenHelper(this);
         mTextUsername = (EditText) findViewById(R.id.editText_username);
         mTextPassword = (EditText) findViewById(R.id.editText_password);
         mTextCnfPassword = (EditText) findViewById(R.id.edit_cnf_password);
         mRegisterButton = (Button) findViewById(R.id.register_button);
+
         mTextLogin = (TextView) findViewById(R.id.register);
         mTextLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,27 +40,33 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(loginIntent);
             }
         });
+
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String user = mTextUsername.getText().toString().trim();
-                String pswrd = mTextPassword.getText().toString().trim();
-                String cnf_pswrd = mTextCnfPassword.getText().toString().trim();
 
-//                if (pswrd.equals(cnf_pswrd)) {
-//                    long val = mDbHelper.addUser(user, pswrd);
-//                    if (val > 0) {
-//                        Toast.makeText(RegisterActivity.this, "Registration Successful!", Toast.LENGTH_LONG).show();
-//                    } else {
-//                        Toast.makeText(RegisterActivity.this, "Registration Error!!", Toast.LENGTH_LONG).show();
-//                    }
-//                } else {
-//                    Toast.makeText(RegisterActivity.this, "Password do not match, check again!", Toast.LENGTH_SHORT).show();
-//                }
-
-                Toast.makeText(RegisterActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
-
+                registerUser();
             }
         });
+    }
+
+    private void registerUser() {
+        String user = mTextUsername.getText().toString();
+        String pswrd = mTextPassword.getText().toString();
+        String cnf_pswrd = mTextCnfPassword.getText().toString();
+
+        if (user != null && pswrd != null && cnf_pswrd != null) {
+            if (pswrd.equals(cnf_pswrd)) {
+
+                mDbHelper.addUser(user, pswrd);
+
+                Intent loginIntent = new Intent(RegisterActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
+            } else {
+                Snackbar.make(findViewById(R.id.reg_view), "Password do not match, Check again!!", Snackbar.LENGTH_LONG).show();
+            }
+        } else {
+            Snackbar.make(findViewById(R.id.reg_view), "Fill all empty fields!", Snackbar.LENGTH_LONG).show();
+        }
     }
 }

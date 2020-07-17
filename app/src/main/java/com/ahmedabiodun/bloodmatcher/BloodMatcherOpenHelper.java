@@ -13,21 +13,19 @@ import com.ahmedabiodun.bloodmatcher.BloodMatcherDatabaseContract.AuthDataEntry;
 
 public class BloodMatcherOpenHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Medical.db";
+    public static final String DATABASE_NAME = "bloodMatcher.db";
     public static final int DATABASE_VERSION = 1;
+    private final Context mContext;
 
-    public BloodMatcherOpenHelper(@Nullable Context context) {
+    public BloodMatcherOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.mContext = context;
     }
 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(AuthDataEntry.SQL_CREATE_TABLE);
-        db.execSQL(BloodMatcherDatabaseContract.BloodTypeDonorsEntry.SQL_CREATE_TABLE);
-
-        DatabaseDataWorker worker = new DatabaseDataWorker(db);
-        worker.insertSampleUsers();
     }
 
     @Override
@@ -36,7 +34,8 @@ public class BloodMatcherOpenHelper extends SQLiteOpenHelper {
     }
 
     public long addUser(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        BloodMatcherOpenHelper helper = new BloodMatcherOpenHelper(mContext);
+        SQLiteDatabase db = helper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(AuthDataEntry.COLUMN_USERNAME, username);
@@ -47,27 +46,31 @@ public class BloodMatcherOpenHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkUser(String username, String password) {
-//        BloodMatcherOpenHelper helper = new BloodMatcherOpenHelper(BloodMatcherOpenHelper.this);
-        SQLiteDatabase db = this.getReadableDatabase();
+        BloodMatcherOpenHelper helper = new BloodMatcherOpenHelper(mContext);
+        SQLiteDatabase db = helper.getReadableDatabase();
 
         String[] columns = {
                 BaseColumns._ID,
                 AuthDataEntry.COLUMN_USERNAME,
-                AuthDataEntry.COLUMN_PASSWORD };
+                AuthDataEntry.COLUMN_PASSWORD
+        };
 
         String selection = AuthDataEntry.COLUMN_USERNAME + " = ?" + " AND " +
                 AuthDataEntry.COLUMN_PASSWORD + " = ?";
         String[] selectionArgs = {username, password};
+        String sortOrder = AuthDataEntry.COLUMN_USERNAME + " DESC";
 
         Cursor cursor = db.query(AuthDataEntry.TABLE_NAME, columns, selection, selectionArgs,
-                null, null, null);
+                null, null, sortOrder);
 
         int count = cursor.getCount();
         cursor.close();
 
-        if (count > 0)
+        if (count > 0) {
             return true;
-        else
+        }
+        else {
             return false;
+        }
     }
 }

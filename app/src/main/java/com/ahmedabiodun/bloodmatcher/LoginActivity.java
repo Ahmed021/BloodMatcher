@@ -10,21 +10,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ahmedabiodun.bloodmatcher.R;
-
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText mTextUsername;
-    private EditText mTextPassword;
-    private Button mLoginButton;
-    private TextView mTextRegister;
-    private BloodMatcherOpenHelper mDbHelper = new BloodMatcherOpenHelper(this);
+    EditText mTextUsername;
+    EditText mTextPassword;
+    Button mLoginButton;
+    TextView mTextRegister;
+    BloodMatcherOpenHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.login_activity);
 
+        mDbHelper = new BloodMatcherOpenHelper(this);
         mTextUsername = (EditText) findViewById(R.id.editText_username);
         mTextPassword = (EditText) findViewById(R.id.editText_password);
         mLoginButton = (Button) findViewById(R.id.login_button);
@@ -40,8 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                checkUser();
-                Toast.makeText(LoginActivity.this, "Teting testing!!!", Toast.LENGTH_LONG).show();
+                checkUser();
             }
         });
     }
@@ -49,10 +47,11 @@ public class LoginActivity extends AppCompatActivity {
     private void checkUser() {
         String user = mTextUsername.getText().toString().trim();
         String pswrd = mTextPassword.getText().toString().trim();
+
         Boolean isUserExist = mDbHelper.checkUser(user, pswrd);
 
         if (isUserExist) {
-            Toast.makeText(LoginActivity.this, "Successfully Logged in", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, "Welcome back!", Toast.LENGTH_SHORT).show();
             Intent homeIntent = new Intent(LoginActivity.this, HomeScreenActivity.class);
             startActivity(homeIntent);
         } else {
@@ -62,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        mDbHelper.close();
         super.onDestroy();
     }
 }
